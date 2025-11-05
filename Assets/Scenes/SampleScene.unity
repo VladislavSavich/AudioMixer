@@ -751,6 +751,7 @@ GameObject:
   m_Component:
   - component: {fileID: 584682537}
   - component: {fileID: 584682538}
+  - component: {fileID: 584682539}
   m_Layer: 5
   m_Name: ButtonsSlider
   m_TagString: Untagged
@@ -831,9 +832,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1471316648}
-        m_TargetAssemblyTypeName: SoundPanel, Assembly-CSharp
-        m_MethodName: ChangeEffectsVolume
+      - m_Target: {fileID: 584682539}
+        m_TargetAssemblyTypeName: Slider, Assembly-CSharp
+        m_MethodName: SetValue
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -843,6 +844,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &584682539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584682536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fff55594d7f04cb4eadd207f8e8bbf1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExposedParameter: EffectsVolume
 --- !u!1 &596289545
 GameObject:
   m_ObjectHideFlags: 0
@@ -1160,6 +1174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 798462697}
   - component: {fileID: 798462698}
+  - component: {fileID: 798462699}
   m_Layer: 5
   m_Name: MasterSlider
   m_TagString: Untagged
@@ -1240,9 +1255,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1471316648}
-        m_TargetAssemblyTypeName: SoundPanel, Assembly-CSharp
-        m_MethodName: ChangeMasterVolume
+      - m_Target: {fileID: 798462699}
+        m_TargetAssemblyTypeName: Slider, Assembly-CSharp
+        m_MethodName: SetValue
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1252,6 +1267,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &798462699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798462696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fff55594d7f04cb4eadd207f8e8bbf1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExposedParameter: MasterVolume
 --- !u!1 &893462731
 GameObject:
   m_ObjectHideFlags: 0
@@ -2477,7 +2505,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d937d0d7230c45c43bc90a9def1cdeb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mixer: {fileID: 24300002, guid: 2448e57f080c20242a80c1b1ff2d7f88, type: 2}
+  _audioMixerGroup: {fileID: 24300002, guid: 2448e57f080c20242a80c1b1ff2d7f88, type: 2}
+  _toggle: {fileID: 1586539218}
+  _masterSlider: {fileID: 798462699}
+  _musicSlider: {fileID: 1569790277}
+  _buttonsSlider: {fileID: 584682539}
 --- !u!1 &1473968850
 GameObject:
   m_ObjectHideFlags: 0
@@ -2658,6 +2690,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1569790275}
   - component: {fileID: 1569790276}
+  - component: {fileID: 1569790277}
   m_Layer: 5
   m_Name: BackgroundSlider
   m_TagString: Untagged
@@ -2738,9 +2771,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1471316648}
-        m_TargetAssemblyTypeName: SoundPanel, Assembly-CSharp
-        m_MethodName: ChangeMusicVolume
+      - m_Target: {fileID: 1569790277}
+        m_TargetAssemblyTypeName: Slider, Assembly-CSharp
+        m_MethodName: SetValue
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2750,6 +2783,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1569790277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569790274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fff55594d7f04cb4eadd207f8e8bbf1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExposedParameter: MusicVolume
 --- !u!1 &1586539213
 GameObject:
   m_ObjectHideFlags: 0
@@ -2762,6 +2808,7 @@ GameObject:
   - component: {fileID: 1586539217}
   - component: {fileID: 1586539216}
   - component: {fileID: 1586539215}
+  - component: {fileID: 1586539218}
   m_Layer: 5
   m_Name: Mute Button
   m_TagString: Untagged
@@ -2833,8 +2880,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1471316648}
-        m_TargetAssemblyTypeName: SoundPanel, Assembly-CSharp
+      - m_Target: {fileID: 1586539218}
+        m_TargetAssemblyTypeName: Toggle, Assembly-CSharp
         m_MethodName: ToggleSound
         m_Mode: 1
         m_Arguments:
@@ -2883,6 +2930,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1586539213}
   m_CullTransparentMesh: 1
+--- !u!114 &1586539218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586539213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f71248a2d7c39241906fb2290f47a72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExposedParameter: MasterVolume
 --- !u!1 &1590518226
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,61 +3,40 @@ using UnityEngine.Audio;
 
 public class SoundPanel : MonoBehaviour
 {
-    public static readonly string MasterVolume = nameof(MasterVolume);
-    public static readonly string MusicVolume = nameof(MusicVolume);
-    public static readonly string EffectsVolume = nameof(EffectsVolume);
+    [SerializeField] private AudioMixerGroup _audioMixerGroup;
+    [SerializeField] private Toggle _toggle;
+    [SerializeField] private Slider _masterSlider;
+    [SerializeField] private Slider _musicSlider;
+    [SerializeField] private Slider _buttonsSlider;
 
-    [SerializeField] private AudioMixerGroup _mixer;
-
-    private float _minVolume = -80f;
-    private float _defaultVolume = 0f;
+    private float _minimumValue = 0.0001f;
     private float _currentVolume;
-    private bool _isMuted;
 
-    private void Start()
+    private void OnEnable()
     {
-        _isMuted = false;
+        _toggle.TogglePressed += ChangeVolume;
+        _masterSlider.ValueChanged += ChangeVolume;
+        _musicSlider.ValueChanged += ChangeVolume;
+        _buttonsSlider.ValueChanged += ChangeVolume;
     }
 
-    public void ToggleSound()
+    private void OnDisable()
     {
-        if (!_isMuted)
-            MuteSound();
-        else
-            UnmuteSound();
-    }
-
-    public void ChangeMasterVolume(float volume)
-    {
-        ChangeVolume(volume, MasterVolume);
-    }
-
-    public void ChangeMusicVolume(float volume)
-    {
-        ChangeVolume(volume, MusicVolume);
-    }
-
-    public void ChangeEffectsVolume(float volume)
-    {
-        ChangeVolume(volume, EffectsVolume);
+        _toggle.TogglePressed -= ChangeVolume;
+        _masterSlider.ValueChanged -= ChangeVolume;
+        _musicSlider.ValueChanged -= ChangeVolume;
+        _buttonsSlider.ValueChanged -= ChangeVolume;
     }
 
     private void ChangeVolume(float value, string name)
     {
+        if (value == 0) 
+        {
+            value = _minimumValue;
+        }
+
         _currentVolume = Mathf.Log10(value) * 20;
 
-        _mixer.audioMixer.SetFloat(name, _currentVolume);
-    }
-
-    private void MuteSound() 
-    {
-        ChangeVolume(_minVolume, MasterVolume);
-        _isMuted = true;
-    }
-
-    private void UnmuteSound()
-    {
-        ChangeVolume(_defaultVolume, MasterVolume);
-        _isMuted = false;
+        _audioMixerGroup.audioMixer.SetFloat(name, _currentVolume);
     }
 }
